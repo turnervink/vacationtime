@@ -1,0 +1,71 @@
+{
+    "appKeys": {
+        "KEY_CONDITIONS": 0,
+        "KEY_SCALE": 3,
+        "KEY_TEMPERATURE": 1,
+        "KEY_TEMPERATUREC": 2,
+        "KEY_WEATHER": 4
+    },
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "Turner Vink",
+    "longName": "Vacation Time",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "fonts/cynthe.ttf",
+                "name": "FONT_CYNTHE_14",
+                "type": "font"
+            },
+            {
+                "file": "fonts/cynthe.ttf",
+                "name": "FONT_CYNTHE_25",
+                "type": "font"
+            },
+            {
+                "file": "fonts/cynthe.ttf",
+                "name": "FONT_CYNTHE_22",
+                "type": "font"
+            },
+            {
+                "file": "fonts/cynthe.ttf",
+                "name": "FONT_CYNTHE_18",
+                "type": "font"
+            },
+            {
+                "type": "raw",
+                "name": "LOCALE_ENGLISH",
+                "file": "locale_english.bin"
+            }, 
+            {
+                "type": "raw",
+                "name": "LOCALE_FRENCH",
+                "file": "locale_french.bin"
+            }, 
+            {
+                "type": "raw",
+                "name": "LOCALE_SPANISH",
+                "file": "locale_spanish.bin"
+            }, 
+            {
+                "type": "raw",
+                "name": "LOCALE_GERMAN",
+                "file": "locale_german.bin"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Vacation",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "cd8dcffe-df20-4306-99e8-ddd817d0bf67",
+    "versionLabel": "2.2",
+    "watchapp": {
+        "watchface": true
+    }
+}
