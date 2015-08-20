@@ -163,119 +163,9 @@ static void update_time() {
 	}*/
 }
 
-static void battery_handler(BatteryChargeState state) {
-	layer_mark_dirty(batt_layer);
-}
-
-static void batt_layer_draw(Layer *layer, GContext *ctx) {
-	time_t temp = time(NULL);
-	struct tm *tick_time = localtime(&temp);
-
-	int hour = tick_time->tm_hour;
-
-	BatteryChargeState state = battery_state_service_peek();
-	int pct = state.charge_percent;
-	int w = 4; // width of battery bar
-
-	#ifdef PBL_COLOR
-		// basalt, aplite (should be a middle ground between fore/background colours)
-		if(hour >= 21) { // black, black
-			graphics_context_set_fill_color(ctx, GColorLightGray); // foreground colour (remaining, lighter than bg)
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorBlack); // background colour (expended, darker than bg)
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 18) { // oxford blue, black
-			graphics_context_set_fill_color(ctx, GColorCobaltBlue);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorOxfordBlue);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 15) { // sunset orange, white
-			graphics_context_set_fill_color(ctx, GColorMelon);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorSunsetOrange);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 12) { // vivid cerulean, white
-			graphics_context_set_fill_color(ctx, GColorBabyBlueEyes);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorVividCerulean);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 9) { // vivid cerulean, white
-			graphics_context_set_fill_color(ctx, GColorBabyBlueEyes);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorVividCerulean);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 6) { // vivid cerulean, white
-			graphics_context_set_fill_color(ctx, GColorBabyBlueEyes);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorVividCerulean);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 3) { // very light blue, black
-			graphics_context_set_fill_color(ctx, GColorBabyBlueEyes);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorVeryLightBlue);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 0) { // black, black
-			graphics_context_set_fill_color(ctx, GColorLightGray);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorBlack);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else {
-
-		}
-	#else
-		if(hour >= 21) { // black, black
-			graphics_context_set_fill_color(ctx, GColorWhite); // foreground colour (remaining, lighter than bg)
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorBlack); // background colour (expended, darker than bg)
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 18) { // oxford blue, black
-			graphics_context_set_fill_color(ctx, GColorWhite);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorBlack);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 15) { // sunset orange, white
-			graphics_context_set_fill_color(ctx, GColorBlack);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorWhite);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 12) { // vivid cerulean, white
-			graphics_context_set_fill_color(ctx, GColorBlack);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorWhite);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 9) { // vivid cerulean, white
-			graphics_context_set_fill_color(ctx, GColorBlack);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorWhite);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 6) { // vivid cerulean, white
-			graphics_context_set_fill_color(ctx, GColorBlack);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorWhite);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 3) { // very light blue, black
-			graphics_context_set_fill_color(ctx, GColorWhite);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorBlack);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else if(hour >= 0) { // black, black
-			graphics_context_set_fill_color(ctx, GColorWhite);
-			graphics_fill_rect(ctx, GRect(0,0,w,168), 0, GCornerNone);
-			graphics_context_set_fill_color(ctx, GColorBlack);
-			graphics_fill_rect(ctx, GRect(0,0,w,(16.8*(100-pct)/10)), 0, GCornerNone);
-		} else {
-
-		}
-	#endif
-}
-
 static void main_window_load(Window *window) {
 	s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CYNTHE_25));
 	s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CYNTHE_22));
-
-	batt_layer = layer_create(GRect(0, 0, 144, 168));
-	
-	layer_set_update_proc(batt_layer, batt_layer_draw);
 
 	s_ampm_layer = text_layer_create(GRect(0, 96, 142, 168));
 	text_layer_set_background_color(s_ampm_layer, GColorClear);
@@ -292,7 +182,6 @@ static void main_window_load(Window *window) {
 	text_layer_set_font(s_time_layer, s_time_font);
 	text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
 
-	layer_add_child(window_get_root_layer(window), batt_layer);
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_ampm_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_date_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
@@ -306,7 +195,6 @@ static void main_window_unload(Window *window) {
 	text_layer_destroy(s_date_layer);
 	fonts_unload_custom_font(s_time_font);
 	fonts_unload_custom_font(s_date_font);
-	layer_destroy(batt_layer);
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
@@ -324,13 +212,11 @@ static void init() {
 
 	window_stack_push(s_main_window, true);
 	tick_timer_service_subscribe(HOUR_UNIT, tick_handler);
-	battery_state_service_subscribe(battery_handler);
 }
 
 static void deinit() {
   window_destroy(s_main_window);
   tick_timer_service_unsubscribe();
-  battery_state_service_unsubscribe();
 }
 
 int main(void) {
