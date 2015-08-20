@@ -1,14 +1,53 @@
 #include <pebble.h>
 
-static Window *s_main_window;
-static TextLayer *s_time_layer, *s_ampm_layer, *s_date_layer;
-static GFont s_time_font, s_date_font;
+#define KEY_SHOW_WEATHER 0
+#define KEY_USE_CELSIUS 1
 
+static Window *s_main_window;
+static TextLayer *s_time_layer, *s_ampm_layer, *s_date_layer, *s_temp_layer, *s_conditions_layer;
+static Layer *weather_layer;
+static GFont s_time_font, s_date_font, s_weather_font;
+static bool show_weather = 1;
+static bool use_celsius = 0;
+
+void on_animation_stopped(Animation *anim, bool finished, void *context) {
+    //Free the memory used by the Animation
+    property_animation_destroy((PropertyAnimation*) anim);
+}
+ 
+void animate_layer(Layer *layer, GRect *start, GRect *finish, int duration, int delay) {
+    //Declare animation
+    PropertyAnimation *anim = property_animation_create_layer_frame(layer, start, finish);
+ 
+    //Set characteristics
+    animation_set_duration((Animation*) anim, duration);
+    animation_set_delay((Animation*) anim, delay);
+ 
+    //Set stopped handler to free memory
+    AnimationHandlers handlers = {
+        //The reference to the stopped handler is the only one in the array
+        .stopped = (AnimationStoppedHandler) on_animation_stopped
+    };
+    animation_set_handlers((Animation*) anim, handlers, NULL);
+ 
+    //Start animation!
+    animation_schedule((Animation*) anim);
+}
+
+static void animate_layers() {
+	GRect start = GRect(144, 0, 144, 168);
+	GRect finish = GRect(0, 0, 144, 168);
+
+	animate_layer(weather_layer, &start, &finish, 1000, 0);
+	animate_layer(weather_layer, &finish, &start, 1000, 5000);
+}
 
 static void set_text_colors(GColor color) {
 	text_layer_set_text_color(s_ampm_layer, color);
 	text_layer_set_text_color(s_time_layer, color);
 	text_layer_set_text_color(s_date_layer, color);
+	text_layer_set_text_color(s_temp_layer, color);
+	text_layer_set_text_color(s_conditions_layer, color);
 }
 
 static void update_time() {
@@ -133,9 +172,46 @@ static void update_time() {
 	}*/
 }
 
+static void inbox_received_handler(DictionaryIterator *iter, void *context) {
+	static char temp_buffer[15];
+	static char temp_c_buffer[15];
+	static char conditions_buffer[200];
+
+	Tuple *show_weather_t = dict_find(iter, KEY_SHOW_WEATHER);
+	Tuple *use_celsius_t = dict_find(iter, KEY_USE_CELSIUS);
+
+	if (show_weather_t) {
+		APP_LOG(APP_LOG_LEVEL_INFO, "KEY_SHOW_WEATHER received!");
+		show_weather = show_weather_t->value->int8;
+
+		persist_write_int(KEY_SHOW_WEATHER, show_weather);
+	}
+
+	if (use_celsius_t) {
+		APP_LOG(APP_LOG_LEVEL_INFO, "KEY_USE_CELSIUS received!");
+		use_celsius = use_celsius_t->value->int8;
+
+		persist_write_int(KEY_USE_CELSIUS, use_celsius);
+	}
+
+	if (show_weather == 0) {
+		// hide layers
+	} else {
+		// show layers
+	}
+
+	if (use_celsius == 1) {
+		// use temp_c_buffer
+	} else {
+		// use temp_buffer
+	}
+}
+
 static void main_window_load(Window *window) {
 	s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CYNTHE_25));
 	s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CYNTHE_22));
+	s_weather_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CYNTHE_14));
+	weather_layer = layer_create(GRect(144, 0, 144, 168));
 
 	s_ampm_layer = text_layer_create(GRect(0, 96, 142, 168));
 	text_layer_set_background_color(s_ampm_layer, GColorClear);
@@ -152,9 +228,32 @@ static void main_window_load(Window *window) {
 	text_layer_set_font(s_time_layer, s_time_font);
 	text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
 
+	s_temp_layer = text_layer_create(GRect(0, 0, 141, 168));
+	text_layer_set_background_color(s_temp_layer, GColorClear);
+	text_layer_set_font(s_temp_layer, s_weather_font);
+	text_layer_set_text_alignment(s_temp_layer, GTextAlignmentRight);
+	text_layer_set_text(s_temp_layer, "Updating");
+
+	s_conditions_layer = text_layer_create(GRect(0, 15, 141, 168));
+	text_layer_set_background_color(s_conditions_layer, GColorClear);
+	text_layer_set_font(s_conditions_layer, s_weather_font);
+	text_layer_set_text_alignment(s_conditions_layer, GTextAlignmentRight);
+	text_layer_set_text(s_conditions_layer, "Weather");
+
+	layer_add_child(window_get_root_layer(window), weather_layer);
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_ampm_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_date_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
+	layer_add_child(weather_layer, text_layer_get_layer(s_temp_layer));
+	layer_add_child(weather_layer, text_layer_get_layer(s_conditions_layer));
+
+	if (persist_exists(KEY_SHOW_WEATHER)) {
+		show_weather = persist_read_int(KEY_SHOW_WEATHER);
+	}
+
+	if (persist_exists(KEY_USE_CELSIUS)) {
+		use_celsius = persist_read_int(KEY_USE_CELSIUS);
+	}
 
 	update_time();
 }
@@ -171,6 +270,10 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 	update_time();
 }
 
+static void tap_handler(AccelAxisType axis, int32_t direction) {
+	animate_layers();
+}
+
 
 static void init() {
 	s_main_window = window_create();
@@ -182,6 +285,10 @@ static void init() {
 
 	window_stack_push(s_main_window, true);
 	tick_timer_service_subscribe(HOUR_UNIT, tick_handler);
+	accel_tap_service_subscribe(tap_handler);
+
+	app_message_register_inbox_received(inbox_received_handler);
+	app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
 }
 
 static void deinit() {

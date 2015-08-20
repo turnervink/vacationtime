@@ -1,5 +1,8 @@
 {
-    "appKeys": {},
+    "appKeys": {
+        "showWeather": 0,
+        "useCelsius": 1
+        },
     "capabilities": [
         "location",
         "configurable"
