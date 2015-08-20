@@ -1,11 +1,5 @@
 {
-    "appKeys": {
-        "KEY_CONDITIONS": 0,
-        "KEY_SCALE": 3,
-        "KEY_TEMPERATURE": 1,
-        "KEY_TEMPERATUREC": 2,
-        "KEY_WEATHER": 4
-    },
+    "appKeys": {},
     "capabilities": [
         "location",
         "configurable"
@@ -34,26 +28,6 @@
                 "file": "fonts/cynthe.ttf",
                 "name": "FONT_CYNTHE_18",
                 "type": "font"
-            },
-            {
-                "type": "raw",
-                "name": "LOCALE_ENGLISH",
-                "file": "locale_english.bin"
-            }, 
-            {
-                "type": "raw",
-                "name": "LOCALE_FRENCH",
-                "file": "locale_french.bin"
-            }, 
-            {
-                "type": "raw",
-                "name": "LOCALE_SPANISH",
-                "file": "locale_spanish.bin"
-            }, 
-            {
-                "type": "raw",
-                "name": "LOCALE_GERMAN",
-                "file": "locale_german.bin"
             }
         ]
     },
