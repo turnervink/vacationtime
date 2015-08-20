@@ -5,7 +5,6 @@
 #define KEY_TEMPERATURE 1
 #define KEY_TEMPERATUREC 2
 #define KEY_SCALE 3
-#define KEY_WEATHER 4
 
 static Window *s_main_window;
 static TextLayer *s_time_layer, *s_ampm_layer, *s_date_layer, *s_weather_layer, *s_temp_layer;
@@ -406,14 +405,14 @@ static void main_window_load(Window *window) {
 	text_layer_set_background_color(s_temp_layer, GColorClear);
 	text_layer_set_font(s_temp_layer, s_temp_font);
 	text_layer_set_text_alignment(s_temp_layer, GTextAlignmentRight);
-	layer_add_child(weather_anim_layer, text_layer_get_layer(s_temp_layer));
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_temp_layer));
 	text_layer_set_text(s_temp_layer, "Updating");
 
 	s_weather_layer = text_layer_create(GRect(288, 15, 141, 168));
 	text_layer_set_background_color(s_weather_layer, GColorClear);
 	text_layer_set_font(s_weather_layer, s_weather_font);
 	text_layer_set_text_alignment(s_weather_layer, GTextAlignmentRight);
-	layer_add_child(weather_anim_layer, text_layer_get_layer(s_weather_layer));
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_weather_layer));
 	text_layer_set_text(s_weather_layer, "Weather");
 
 
@@ -462,18 +461,10 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
   	break;
 		  case KEY_CONDITIONS:
  		 	  snprintf(conditions_buffer, sizeof(conditions_buffer), "%s", t->value->cstring);
-		break;
-			case KEY_WEATHER:
-				if(strcmp(t->value->cstring, "wtrue") == 0) { // If weather is shown
-					APP_LOG(APP_LOG_LEVEL_INFO, "KEY_WEATHER set to true");
-					persist_write_bool(KEY_WEATHER, true);
-				} else if(strcmp(t->value->cstring, "wfalse") == 0) { // If weather is hidden
-					APP_LOG(APP_LOG_LEVEL_INFO, "KEY_WEATHER set to false");
-					persist_write_bool(KEY_WEATHER, false);
-				}
+	break;
 		  default:
  		    APP_LOG(APP_LOG_LEVEL_ERROR, "Key %d not recognized!", (int)t->key);
- 		break;
+ 	break;
     }
 
     // Look for next item
@@ -491,20 +482,6 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 		text_layer_set_text(s_temp_layer, temperaturec_buffer); // Set to celsius
 	} else {
 		text_layer_set_text(s_temp_layer, temperature_buffer); // Default to fahrenheit
-	}
-	
-	// Set whether to show/hide weather
-	bool animate = persist_read_bool(KEY_WEATHER);
-	
-	if(animate == false) {
-		APP_LOG(APP_LOG_LEVEL_INFO, "Hiding weather_anim_layer");
-		layer_set_hidden(weather_anim_layer, true); // Hide weather
-	} else if(animate == true) {
-		APP_LOG(APP_LOG_LEVEL_INFO, "Showing weather_anim_layer");
-		layer_set_hidden(weather_anim_layer, false); // Show weather
-	} else {
-		APP_LOG(APP_LOG_LEVEL_INFO, "Showing weather_anim_layer by default");
-		layer_set_hidden(weather_anim_layer, false); // Defaulty show weather
 	}
 }
 	

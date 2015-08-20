@@ -1,16 +1,16 @@
-# project  configured on Wed Aug 19 12:36:11 2015 by
+# project  configured on Wed Aug 19 21:35:48 2015 by
 # waf 1.7.11 (abi 98, python 20706f0 on darwin)
-# using /usr/local/Cellar/pebble-sdk/3.2.1/Pebble/waf configure
+# using /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/waf configure
 #
 ----------------------------------------
 Setting top to
-/Users/Turner/pebble-dev/PebbleSDK-3.2.1/Projects/old-projects/Vacation Time Weather/vacation_time
+/Users/Turner/pebble-dev/PebbleSDK-3.3/projects/vacation-time
 ----------------------------------------
 Setting out to
-/Users/Turner/pebble-dev/PebbleSDK-3.2.1/Projects/old-projects/Vacation Time Weather/vacation_time/build
+/Users/Turner/pebble-dev/PebbleSDK-3.3/projects/vacation-time/build
 ----------------------------------------
 Found Pebble SDK for basalt in:
-/usr/local/Cellar/pebble-sdk/3.2.1/Pebble/basalt
+/Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/basalt
 ----------------------------------------
 Checking for program gcc,cc
 arm-none-eabi-gcc
@@ -21,7 +21,7 @@ arm-none-eabi-ar
 find program=['ar'] paths='' var='AR' -> 'arm-none-eabi-ar'
 ----------------------------------------
 Found Pebble SDK for aplite in:
-/usr/local/Cellar/pebble-sdk/3.2.1/Pebble/aplite
+/Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite
 ----------------------------------------
 Checking for program gcc,cc
 arm-none-eabi-gcc
