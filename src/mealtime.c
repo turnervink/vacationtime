@@ -3,7 +3,13 @@
 static Window *s_main_window;
 static TextLayer *s_time_layer, *s_ampm_layer, *s_date_layer;
 static GFont s_time_font, s_date_font;
-static Layer *batt_layer;
+
+
+static void set_text_colors(GColor color) {
+	text_layer_set_text_color(s_ampm_layer, color);
+	text_layer_set_text_color(s_time_layer, color);
+	text_layer_set_text_color(s_date_layer, color);
+}
 
 static void update_time() {
 	time_t temp = time(NULL);
@@ -15,126 +21,90 @@ static void update_time() {
 		text_layer_set_text(s_time_layer, "night");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorBlack);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(gcolor_legible_over(GColorBlack));
 		#else
 			window_set_background_color(s_main_window, GColorBlack);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(GColorWhite);
 		#endif
 	} else if(hour >= 18) {
 		text_layer_set_text(s_ampm_layer, " ");
 		text_layer_set_text(s_time_layer, "evening");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorOxfordBlue);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(gcolor_legible_over(GColorOxfordBlue));
 		#else
 			window_set_background_color(s_main_window, GColorBlack);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(GColorWhite);
 		#endif
 	} else if(hour >= 15) {
 		text_layer_set_text(s_ampm_layer, "late");
 		text_layer_set_text(s_time_layer, "afternoon");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorSunsetOrange);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(gcolor_legible_over(GColorSunsetOrange));
 		#else
 			window_set_background_color(s_main_window, GColorWhite);
-			text_layer_set_text_color(s_ampm_layer, GColorBlack);
-			text_layer_set_text_color(s_time_layer, GColorBlack);
-			text_layer_set_text_color(s_date_layer, GColorBlack);
+			set_text_colors(GColorBlack);
 		#endif
 	} else if(hour >= 12) {
 		text_layer_set_text(s_ampm_layer, " ");
 		text_layer_set_text(s_time_layer, "afternoon");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorVividCerulean);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(gcolor_legible_over(GColorVividCerulean));
 		#else
 			window_set_background_color(s_main_window, GColorWhite);
-			text_layer_set_text_color(s_ampm_layer, GColorBlack);
-			text_layer_set_text_color(s_time_layer, GColorBlack);
-			text_layer_set_text_color(s_date_layer, GColorBlack);
+			set_text_colors(GColorBlack);
 		#endif
 	} else if(hour >= 9) {
 		text_layer_set_text(s_ampm_layer, "late");
 		text_layer_set_text(s_time_layer, "morning");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorVividCerulean);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(gcolor_legible_over(GColorVividCerulean));
 		#else
 			window_set_background_color(s_main_window, GColorWhite);
-			text_layer_set_text_color(s_ampm_layer, GColorBlack);
-			text_layer_set_text_color(s_time_layer, GColorBlack);
-			text_layer_set_text_color(s_date_layer, GColorBlack);
+			set_text_colors(GColorBlack);
 		#endif
 	} else if(hour >= 6) {
 		text_layer_set_text(s_ampm_layer, " ");
 		text_layer_set_text(s_time_layer, "morning");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorVividCerulean);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(gcolor_legible_over(GColorVividCerulean));
 		#else
 			window_set_background_color(s_main_window, GColorWhite);
-			text_layer_set_text_color(s_ampm_layer, GColorBlack);
-			text_layer_set_text_color(s_time_layer, GColorBlack);
-			text_layer_set_text_color(s_date_layer, GColorBlack);
+			set_text_colors(GColorBlack);
 		#endif
 	} else if(hour >= 3) {
 		text_layer_set_text(s_ampm_layer, "early");
 		text_layer_set_text(s_time_layer, "morning");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorVeryLightBlue);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);	
+			set_text_colors(gcolor_legible_over(GColorVeryLightBlue));	
 		#else
 			window_set_background_color(s_main_window, GColorBlack);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(GColorWhite);
 		#endif
 	} else if(hour >= 0) {
 		text_layer_set_text(s_ampm_layer, " ");
 		text_layer_set_text(s_time_layer, "midnight");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorBlack);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(gcolor_legible_over(GColorBlack));
 		#else
 			window_set_background_color(s_main_window, GColorBlack);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(GColorWhite);
 		#endif
 	} else {
 		text_layer_set_text(s_ampm_layer, "error");
 		text_layer_set_text(s_time_layer, "error");
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorRed);
-			text_layer_set_text_color(s_ampm_layer, GColorWhite);
-			text_layer_set_text_color(s_time_layer, GColorWhite);
-			text_layer_set_text_color(s_date_layer, GColorWhite);
+			set_text_colors(gcolor_legible_over(GColorRed));
 		#else
 			window_set_background_color(s_main_window, GColorWhite);
-			text_layer_set_text_color(s_ampm_layer, GColorBlack);
-			text_layer_set_text_color(s_time_layer, GColorBlack);
-			text_layer_set_text_color(s_date_layer, GColorBlack);
+			set_text_colors(GColorBlack);
 		#endif
 	}	
 
