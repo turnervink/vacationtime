@@ -81,6 +81,8 @@ Pebble.addEventListener('ready',
 Pebble.addEventListener('appmessage',
   function(e) {
     console.log('AppMessage received!');
+
+    getWeather();
   }                     
 );
 
@@ -88,7 +90,7 @@ Pebble.addEventListener("showConfiguration",
   function(e) {
     //Load the remote config page
 		console.log("Configuration window opened");
-    Pebble.openURL("https://dl.dropboxusercontent.com/u/14971687/Vacation%20Time/vacationtime_config.html");
+    Pebble.openURL("https://dl.dropboxusercontent.com/u/14971687/Vacation%20Time/vacationtime_config_edit.html");
   }
 );
 
@@ -99,8 +101,7 @@ Pebble.addEventListener("webviewclosed",
     console.log("Configuration window returned: " + JSON.stringify(configuration));
 		
 		var settingsdictionary = {
-        "KEY_SCALE": configuration.scale,
-				"KEY_WEATHER": configuration.weather,
+        "KEY_SCALE": configuration.scale
       };
 		
     //Send to Pebble, persist there

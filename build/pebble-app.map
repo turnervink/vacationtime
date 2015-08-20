@@ -173,8 +173,6 @@ Discarded input sections
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text.dict_write_uint32
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
- .text.dict_write_uint8
-                0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text.fonts_get_system_font
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text.free     0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
@@ -256,6 +254,8 @@ Discarded input sections
  .text.layer_get_data
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text.layer_get_frame
+                0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+ .text.layer_get_hidden
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text.layer_get_window
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
@@ -472,10 +472,6 @@ Discarded input sections
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text.app_message_get_context
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
- .text.app_message_outbox_begin
-                0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
- .text.app_message_outbox_send
-                0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text.app_message_set_context
                 0x0000000000000000        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text.window_long_click_subscribe
@@ -643,7 +639,7 @@ LOAD /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none
  .note.gnu.build-id
                 0x0000000000000084       0x24 linker stubs
 
-.text           0x00000000000000a8     0x1e96
+.text           0x00000000000000a8     0x1e31
  *(.text)
  .text          0x00000000000000a8       0x14 /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
  .text          0x00000000000000bc      0x370 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
@@ -689,309 +685,311 @@ LOAD /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none
                 0x0000000000000b98       0x14 src/mealtime.c.11.o
  .text.update_time
                 0x0000000000000bac      0x5c8 src/mealtime.c.11.o
- .text.tick_handler
-                0x0000000000001174        0x4 src/mealtime.c.11.o
  .text.main_window_unload
-                0x0000000000001178       0x5c src/mealtime.c.11.o
+                0x0000000000001174       0x5c src/mealtime.c.11.o
  .text.main_window_load
-                0x00000000000011d4      0x288 src/mealtime.c.11.o
- *fill*         0x000000000000145c        0x4 
+                0x00000000000011d0      0x244 src/mealtime.c.11.o
+ *fill*         0x0000000000001414        0x4 
  .text.batt_layer_draw
-                0x0000000000001460      0x3e8 src/mealtime.c.11.o
+                0x0000000000001418      0x3e8 src/mealtime.c.11.o
  .text.on_animation_stopped
-                0x0000000000001848        0x4 src/mealtime.c.11.o
-                0x0000000000001848                on_animation_stopped
+                0x0000000000001800        0x4 src/mealtime.c.11.o
+                0x0000000000001800                on_animation_stopped
+ .text.tick_handler
+                0x0000000000001804       0x2c src/mealtime.c.11.o
  .text.animate_layer
-                0x000000000000184c       0x40 src/mealtime.c.11.o
-                0x000000000000184c                animate_layer
+                0x0000000000001830       0x40 src/mealtime.c.11.o
+                0x0000000000001830                animate_layer
  .text.tap_handler
-                0x000000000000188c      0x134 src/mealtime.c.11.o
+                0x0000000000001870      0x134 src/mealtime.c.11.o
  .text.startup.main
-                0x00000000000019c0      0x110 src/mealtime.c.11.o
-                0x00000000000019c0                main
+                0x00000000000019a4       0xcc src/mealtime.c.11.o
+                0x00000000000019a4                main
  .text.accel_tap_service_subscribe
-                0x0000000000001ad0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001ad0                accel_tap_service_subscribe
+                0x0000000000001a70        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001a70                accel_tap_service_subscribe
  .text.animation_schedule
-                0x0000000000001adc        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001adc                animation_schedule
+                0x0000000000001a7c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001a7c                animation_schedule
  .text.animation_set_delay
-                0x0000000000001ae8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001ae8                animation_set_delay
+                0x0000000000001a88        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001a88                animation_set_delay
  .text.animation_set_duration
-                0x0000000000001af4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001af4                animation_set_duration
+                0x0000000000001a94        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001a94                animation_set_duration
  .text.animation_set_handlers
-                0x0000000000001b00        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b00                animation_set_handlers
+                0x0000000000001aa0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001aa0                animation_set_handlers
  .text.app_event_loop
-                0x0000000000001b0c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b0c                app_event_loop
- .text.app_log  0x0000000000001b18        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b18                app_log
+                0x0000000000001aac        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001aac                app_event_loop
+ .text.app_log  0x0000000000001ab8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001ab8                app_log
  .text.app_message_open
-                0x0000000000001b24        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b24                app_message_open
+                0x0000000000001ac4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001ac4                app_message_open
  .text.battery_state_service_peek
-                0x0000000000001b30        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b30                battery_state_service_peek
+                0x0000000000001ad0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001ad0                battery_state_service_peek
  .text.battery_state_service_subscribe
-                0x0000000000001b3c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b3c                battery_state_service_subscribe
+                0x0000000000001adc        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001adc                battery_state_service_subscribe
  .text.battery_state_service_unsubscribe
-                0x0000000000001b48        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b48                battery_state_service_unsubscribe
+                0x0000000000001ae8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001ae8                battery_state_service_unsubscribe
  .text.dict_find
-                0x0000000000001b54        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b54                dict_find
+                0x0000000000001af4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001af4                dict_find
  .text.dict_read_first
-                0x0000000000001b60        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b60                dict_read_first
+                0x0000000000001b00        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b00                dict_read_first
  .text.dict_read_next
-                0x0000000000001b6c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b6c                dict_read_next
+                0x0000000000001b0c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b0c                dict_read_next
  .text.dict_write_begin
-                0x0000000000001b78        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b78                dict_write_begin
+                0x0000000000001b18        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b18                dict_write_begin
  .text.dict_write_end
-                0x0000000000001b84        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b84                dict_write_end
+                0x0000000000001b24        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b24                dict_write_end
  .text.dict_write_tuplet
-                0x0000000000001b90        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b90                dict_write_tuplet
+                0x0000000000001b30        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b30                dict_write_tuplet
+ .text.dict_write_uint8
+                0x0000000000001b3c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b3c                dict_write_uint8
  .text.fonts_load_custom_font
-                0x0000000000001b9c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001b9c                fonts_load_custom_font
+                0x0000000000001b48        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b48                fonts_load_custom_font
  .text.fonts_unload_custom_font
-                0x0000000000001ba8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001ba8                fonts_unload_custom_font
+                0x0000000000001b54        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b54                fonts_unload_custom_font
  .text.graphics_context_set_fill_color
-                0x0000000000001bb4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001bb4                graphics_context_set_fill_color
+                0x0000000000001b60        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b60                graphics_context_set_fill_color
  .text.graphics_fill_rect
-                0x0000000000001bc0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001bc0                graphics_fill_rect
+                0x0000000000001b6c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b6c                graphics_fill_rect
  .text.layer_add_child
-                0x0000000000001bcc        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001bcc                layer_add_child
+                0x0000000000001b78        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b78                layer_add_child
  .text.layer_create
-                0x0000000000001bd8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001bd8                layer_create
+                0x0000000000001b84        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b84                layer_create
  .text.layer_destroy
-                0x0000000000001be4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001be4                layer_destroy
- .text.layer_get_hidden
-                0x0000000000001bf0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001bf0                layer_get_hidden
+                0x0000000000001b90        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b90                layer_destroy
  .text.layer_mark_dirty
-                0x0000000000001bfc        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001bfc                layer_mark_dirty
+                0x0000000000001b9c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001b9c                layer_mark_dirty
  .text.layer_set_update_proc
-                0x0000000000001c08        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c08                layer_set_update_proc
+                0x0000000000001ba8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001ba8                layer_set_update_proc
  .text.localtime
-                0x0000000000001c14        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c14                localtime
- .text.malloc   0x0000000000001c20        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c20                malloc
- .text.memset   0x0000000000001c2c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c2c                memset
+                0x0000000000001bb4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001bb4                localtime
+ .text.malloc   0x0000000000001bc0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001bc0                malloc
+ .text.memset   0x0000000000001bcc        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001bcc                memset
  .text.persist_read_bool
-                0x0000000000001c38        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c38                persist_read_bool
+                0x0000000000001bd8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001bd8                persist_read_bool
  .text.persist_write_bool
-                0x0000000000001c44        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c44                persist_write_bool
+                0x0000000000001be4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001be4                persist_write_bool
  .text.property_animation_create_layer_frame
-                0x0000000000001c50        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c50                property_animation_create_layer_frame
+                0x0000000000001bf0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001bf0                property_animation_create_layer_frame
  .text.property_animation_destroy
-                0x0000000000001c5c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c5c                property_animation_destroy
+                0x0000000000001bfc        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001bfc                property_animation_destroy
  .text.resource_get_handle
-                0x0000000000001c68        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c68                resource_get_handle
+                0x0000000000001c08        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c08                resource_get_handle
  .text.resource_load_byte_range
-                0x0000000000001c74        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c74                resource_load_byte_range
+                0x0000000000001c14        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c14                resource_load_byte_range
  .text.resource_size
-                0x0000000000001c80        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c80                resource_size
+                0x0000000000001c20        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c20                resource_size
  .text.snprintf
-                0x0000000000001c8c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c8c                snprintf
- .text.strcmp   0x0000000000001c98        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001c98                strcmp
+                0x0000000000001c2c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c2c                snprintf
+ .text.strcmp   0x0000000000001c38        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c38                strcmp
  .text.strftime
-                0x0000000000001ca4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001ca4                strftime
- .text.strncmp  0x0000000000001cb0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001cb0                strncmp
+                0x0000000000001c44        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c44                strftime
+ .text.strncmp  0x0000000000001c50        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c50                strncmp
  .text.text_layer_create
-                0x0000000000001cbc        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001cbc                text_layer_create
+                0x0000000000001c5c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c5c                text_layer_create
  .text.text_layer_destroy
-                0x0000000000001cc8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001cc8                text_layer_destroy
+                0x0000000000001c68        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c68                text_layer_destroy
  .text.text_layer_get_layer
-                0x0000000000001cd4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001cd4                text_layer_get_layer
+                0x0000000000001c74        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c74                text_layer_get_layer
  .text.text_layer_set_background_color
-                0x0000000000001ce0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001ce0                text_layer_set_background_color
+                0x0000000000001c80        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c80                text_layer_set_background_color
  .text.text_layer_set_font
-                0x0000000000001cec        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001cec                text_layer_set_font
+                0x0000000000001c8c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c8c                text_layer_set_font
  .text.text_layer_set_text
-                0x0000000000001cf8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001cf8                text_layer_set_text
+                0x0000000000001c98        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001c98                text_layer_set_text
  .text.text_layer_set_text_alignment
-                0x0000000000001d04        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d04                text_layer_set_text_alignment
+                0x0000000000001ca4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001ca4                text_layer_set_text_alignment
  .text.text_layer_set_text_color
-                0x0000000000001d10        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d10                text_layer_set_text_color
+                0x0000000000001cb0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001cb0                text_layer_set_text_color
  .text.tick_timer_service_subscribe
-                0x0000000000001d1c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d1c                tick_timer_service_subscribe
+                0x0000000000001cbc        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001cbc                tick_timer_service_subscribe
  .text.tick_timer_service_unsubscribe
-                0x0000000000001d28        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d28                tick_timer_service_unsubscribe
- .text.time     0x0000000000001d34        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d34                time
+                0x0000000000001cc8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001cc8                tick_timer_service_unsubscribe
+ .text.time     0x0000000000001cd4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001cd4                time
  .text.window_create
-                0x0000000000001d40        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d40                window_create
+                0x0000000000001ce0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001ce0                window_create
  .text.window_destroy
-                0x0000000000001d4c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d4c                window_destroy
+                0x0000000000001cec        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001cec                window_destroy
  .text.window_get_root_layer
-                0x0000000000001d58        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d58                window_get_root_layer
+                0x0000000000001cf8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001cf8                window_get_root_layer
  .text.window_set_background_color
-                0x0000000000001d64        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d64                window_set_background_color
+                0x0000000000001d04        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d04                window_set_background_color
  .text.window_set_window_handlers
-                0x0000000000001d70        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d70                window_set_window_handlers
+                0x0000000000001d10        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d10                window_set_window_handlers
  .text.window_stack_push
-                0x0000000000001d7c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d7c                window_stack_push
+                0x0000000000001d1c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d1c                window_stack_push
  .text.app_message_inbox_size_maximum
-                0x0000000000001d88        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d88                app_message_inbox_size_maximum
+                0x0000000000001d28        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d28                app_message_inbox_size_maximum
+ .text.app_message_outbox_begin
+                0x0000000000001d34        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d34                app_message_outbox_begin
+ .text.app_message_outbox_send
+                0x0000000000001d40        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d40                app_message_outbox_send
  .text.app_message_outbox_size_maximum
-                0x0000000000001d94        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001d94                app_message_outbox_size_maximum
+                0x0000000000001d4c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d4c                app_message_outbox_size_maximum
  .text.app_message_register_inbox_dropped
-                0x0000000000001da0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001da0                app_message_register_inbox_dropped
+                0x0000000000001d58        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d58                app_message_register_inbox_dropped
  .text.app_message_register_inbox_received
-                0x0000000000001dac        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001dac                app_message_register_inbox_received
+                0x0000000000001d64        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d64                app_message_register_inbox_received
  .text.app_message_register_outbox_failed
-                0x0000000000001db8        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001db8                app_message_register_outbox_failed
+                0x0000000000001d70        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d70                app_message_register_outbox_failed
  .text.app_message_register_outbox_sent
-                0x0000000000001dc4        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001dc4                app_message_register_outbox_sent
+                0x0000000000001d7c        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d7c                app_message_register_outbox_sent
  .text.i18n_get_system_locale
-                0x0000000000001dd0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
-                0x0000000000001dd0                i18n_get_system_locale
+                0x0000000000001d88        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+                0x0000000000001d88                i18n_get_system_locale
  *(.rodata)
- .rodata        0x0000000000001ddc       0x50 src/mealtime.c.11.o
+ .rodata        0x0000000000001d94       0x50 src/mealtime.c.11.o
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000001e2c        0xb src/localize.c.11.o
+                0x0000000000001de4        0xb src/localize.c.11.o
  .rodata.str1.1
-                0x0000000000001e37      0x107 src/mealtime.c.11.o
+                0x0000000000001def       0xea src/mealtime.c.11.o
 
-.glue_7         0x0000000000001f40        0x0
+.glue_7         0x0000000000001edc        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x0000000000001f40        0x0
+.glue_7t        0x0000000000001edc        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000001f40        0x0
+.vfp11_veneer   0x0000000000001edc        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000000001f40        0x0
+.v4_bx          0x0000000000001edc        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000000001f40        0x0
+.iplt           0x0000000000001edc        0x0
  .iplt          0x0000000000000000        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.rel.dyn        0x0000000000001f40        0x0
+.rel.dyn        0x0000000000001edc        0x0
  .rel.iplt      0x0000000000000000        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
  .rel.got       0x0000000000000000        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.data           0x0000000000001f40        0xe
+.data           0x0000000000001edc        0xe
  *(.data)
- .data          0x0000000000001f40        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
- .data          0x0000000000001f40        0x4 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000001f40                __dso_handle
- .data          0x0000000000001f44        0x0 src/localize.c.11.o
- .data          0x0000000000001f44        0x0 src/mealtime.c.11.o
- .data          0x0000000000001f44        0x0 aplite/appinfo.auto.c.11.o
- .data          0x0000000000001f44        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
- .data          0x0000000000001f44        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .data          0x0000000000001f44        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .data          0x0000000000001f44        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
- .data          0x0000000000001f44        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
- .data          0x0000000000001f44        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
+ .data          0x0000000000001edc        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crti.o
+ .data          0x0000000000001edc        0x4 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x0000000000001edc                __dso_handle
+ .data          0x0000000000001ee0        0x0 src/localize.c.11.o
+ .data          0x0000000000001ee0        0x0 src/mealtime.c.11.o
+ .data          0x0000000000001ee0        0x0 aplite/appinfo.auto.c.11.o
+ .data          0x0000000000001ee0        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/Pebble/aplite/lib/libpebble.a(tmpjjxXcopebble.o)
+ .data          0x0000000000001ee0        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .data          0x0000000000001ee0        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .data          0x0000000000001ee0        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .data          0x0000000000001ee0        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
+ .data          0x0000000000001ee0        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtn.o
  *(.data.*)
- .data.date_buffer.6715
-                0x0000000000001f44        0xa src/mealtime.c.11.o
+ .data.date_buffer.6713
+                0x0000000000001ee0        0xa src/mealtime.c.11.o
 
-.igot.plt       0x0000000000001f50        0x0
+.igot.plt       0x0000000000001eec        0x0
  .igot.plt      0x0000000000000000        0x0 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got            0x0000000000001f50        0x4
- .got           0x0000000000001f50        0x4 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+.got            0x0000000000001eec        0x4
+ .got           0x0000000000001eec        0x4 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
 
-.got.plt        0x0000000000001f54        0xc
- .got.plt       0x0000000000001f54        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
-                0x0000000000001f54                _GLOBAL_OFFSET_TABLE_
+.got.plt        0x0000000000001ef0        0xc
+ .got.plt       0x0000000000001ef0        0xc /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtbegin.o
+                0x0000000000001ef0                _GLOBAL_OFFSET_TABLE_
 
-.bss            0x0000000000001f60       0xdc
+.bss            0x0000000000001efc       0xd4
  *(.bss)
  *(.bss.*)
- .bss.s_date_layer
-                0x0000000000001f60        0x4 src/mealtime.c.11.o
+ .bss.temperaturec_buffer.6793
+                0x0000000000001efc       0x19 src/mealtime.c.11.o
+ *fill*         0x0000000000001f15        0x3 
  .bss.s_temp_layer
-                0x0000000000001f64        0x4 src/mealtime.c.11.o
- .bss.temperaturec_buffer.6796
-                0x0000000000001f68       0x19 src/mealtime.c.11.o
- *fill*         0x0000000000001f81        0x3 
- .bss.s_weather_font
-                0x0000000000001f84        0x4 src/mealtime.c.11.o
- .bss.s_date_font
-                0x0000000000001f88        0x4 src/mealtime.c.11.o
- .bss.s_time_layer
-                0x0000000000001f8c        0x4 src/mealtime.c.11.o
+                0x0000000000001f18        0x4 src/mealtime.c.11.o
+ .bss.s_date_layer
+                0x0000000000001f1c        0x4 src/mealtime.c.11.o
  .bss.batt_layer
-                0x0000000000001f90        0x4 src/mealtime.c.11.o
+                0x0000000000001f20        0x4 src/mealtime.c.11.o
+ .bss.s_date_font
+                0x0000000000001f24        0x4 src/mealtime.c.11.o
+ .bss.s_time_layer
+                0x0000000000001f28        0x4 src/mealtime.c.11.o
+ .bss.s_weather_font
+                0x0000000000001f2c        0x4 src/mealtime.c.11.o
+ .bss.temperature_buffer.6792
+                0x0000000000001f30       0x19 src/mealtime.c.11.o
+ *fill*         0x0000000000001f49        0x3 
  .bss.s_time_font
-                0x0000000000001f94        0x4 src/mealtime.c.11.o
- .bss.temp_anim_layer
-                0x0000000000001f98        0x4 src/mealtime.c.11.o
- .bss.temperature_buffer.6795
-                0x0000000000001f9c       0x19 src/mealtime.c.11.o
- *fill*         0x0000000000001fb5        0x3 
+                0x0000000000001f4c        0x4 src/mealtime.c.11.o
+ .bss.conditions_buffer.6794
+                0x0000000000001f50       0x64 src/mealtime.c.11.o
  .bss.s_weather_layer
-                0x0000000000001fb8        0x4 src/mealtime.c.11.o
- .bss.conditions_buffer.6797
-                0x0000000000001fbc       0x64 src/mealtime.c.11.o
+                0x0000000000001fb4        0x4 src/mealtime.c.11.o
  .bss.s_ampm_layer
-                0x0000000000002020        0x4 src/mealtime.c.11.o
+                0x0000000000001fb8        0x4 src/mealtime.c.11.o
  .bss.s_temp_font
-                0x0000000000002024        0x4 src/mealtime.c.11.o
+                0x0000000000001fbc        0x4 src/mealtime.c.11.o
  .bss.s_main_window
-                0x0000000000002028        0x4 src/mealtime.c.11.o
- .bss.weather_anim_layer
-                0x000000000000202c        0x4 src/mealtime.c.11.o
- COMMON         0x0000000000002030        0xc src/localize.c.11.o
-                0x0000000000002030                s_locale_dict
+                0x0000000000001fc0        0x4 src/mealtime.c.11.o
+ COMMON         0x0000000000001fc4        0xc src/localize.c.11.o
+                0x0000000000001fc4                s_locale_dict
 
 DISCARD
  libc.a(*)
@@ -1033,25 +1031,25 @@ OUTPUT(/Users/Turner/pebble-dev/PebbleSDK-3.3/projects/vacation-time/build/aplit
  .comment       0x0000000000000000       0x4f aplite/appinfo.auto.c.11.o
  .comment       0x0000000000000000       0x4f /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/crtend.o
 
-.debug_info     0x0000000000000000     0x35a9
+.debug_info     0x0000000000000000     0x3622
  .debug_info    0x0000000000000000      0x81c src/localize.c.11.o
- .debug_info    0x000000000000081c     0x2804 src/mealtime.c.11.o
- .debug_info    0x0000000000003020      0x35e aplite/appinfo.auto.c.11.o
- .debug_info    0x000000000000337e       0xb9 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .debug_info    0x0000000000003437       0xb9 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .debug_info    0x00000000000034f0       0xb9 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .debug_info    0x000000000000081c     0x287d src/mealtime.c.11.o
+ .debug_info    0x0000000000003099      0x35e aplite/appinfo.auto.c.11.o
+ .debug_info    0x00000000000033f7       0xb9 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .debug_info    0x00000000000034b0       0xb9 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .debug_info    0x0000000000003569       0xb9 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
 
-.debug_abbrev   0x0000000000000000      0x72a
+.debug_abbrev   0x0000000000000000      0x77b
  .debug_abbrev  0x0000000000000000      0x247 src/localize.c.11.o
- .debug_abbrev  0x0000000000000247      0x409 src/mealtime.c.11.o
- .debug_abbrev  0x0000000000000650       0x9e aplite/appinfo.auto.c.11.o
- .debug_abbrev  0x00000000000006ee       0x14 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .debug_abbrev  0x0000000000000702       0x14 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .debug_abbrev  0x0000000000000716       0x14 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .debug_abbrev  0x0000000000000247      0x45a src/mealtime.c.11.o
+ .debug_abbrev  0x00000000000006a1       0x9e aplite/appinfo.auto.c.11.o
+ .debug_abbrev  0x000000000000073f       0x14 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .debug_abbrev  0x0000000000000753       0x14 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .debug_abbrev  0x0000000000000767       0x14 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
 
-.debug_loc      0x0000000000000000      0x95a
+.debug_loc      0x0000000000000000      0x967
  .debug_loc     0x0000000000000000      0x217 src/localize.c.11.o
- .debug_loc     0x0000000000000217      0x743 src/mealtime.c.11.o
+ .debug_loc     0x0000000000000217      0x750 src/mealtime.c.11.o
 
 .debug_aranges  0x0000000000000000      0x128
  .debug_aranges
@@ -1071,22 +1069,22 @@ OUTPUT(/Users/Turner/pebble-dev/PebbleSDK-3.3/projects/vacation-time/build/aplit
  .debug_ranges  0x0000000000000000       0x50 src/localize.c.11.o
  .debug_ranges  0x0000000000000050       0x78 src/mealtime.c.11.o
 
-.debug_line     0x0000000000000000      0xdf9
+.debug_line     0x0000000000000000      0xdf4
  .debug_line    0x0000000000000000      0x2a4 src/localize.c.11.o
- .debug_line    0x00000000000002a4      0x56c src/mealtime.c.11.o
- .debug_line    0x0000000000000810      0x133 aplite/appinfo.auto.c.11.o
- .debug_line    0x0000000000000943      0x20a /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
- .debug_line    0x0000000000000b4d      0x226 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
- .debug_line    0x0000000000000d73       0x86 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
+ .debug_line    0x00000000000002a4      0x567 src/mealtime.c.11.o
+ .debug_line    0x000000000000080b      0x133 aplite/appinfo.auto.c.11.o
+ .debug_line    0x000000000000093e      0x20a /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_addsubdf3.o)
+ .debug_line    0x0000000000000b48      0x226 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_muldivdf3.o)
+ .debug_line    0x0000000000000d6e       0x86 /Users/Turner/pebble-dev/PebbleSDK-3.3/arm-cs-tools/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a(_arm_fixdfsi.o)
 
-.debug_str      0x0000000000000000     0x1558
- .debug_str     0x0000000000000000      0x46f src/localize.c.11.o
+.debug_str      0x0000000000000000     0x155a
+ .debug_str     0x0000000000000000      0x469 src/localize.c.11.o
                                         0x4dc (size before relaxing)
- .debug_str     0x000000000000046f      0xed7 src/mealtime.c.11.o
-                                       0x1287 (size before relaxing)
- .debug_str     0x0000000000001346      0x212 aplite/appinfo.auto.c.11.o
+ .debug_str     0x0000000000000469      0xedf src/mealtime.c.11.o
+                                       0x1301 (size before relaxing)
+ .debug_str     0x0000000000001348      0x212 aplite/appinfo.auto.c.11.o
                                         0x422 (size before relaxing)
 
-.debug_frame    0x0000000000000000      0x1e0
+.debug_frame    0x0000000000000000      0x1ec
  .debug_frame   0x0000000000000000       0x4c src/localize.c.11.o
- .debug_frame   0x000000000000004c      0x194 src/mealtime.c.11.o
+ .debug_frame   0x000000000000004c      0x1a0 src/mealtime.c.11.o
