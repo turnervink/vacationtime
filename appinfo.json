@@ -1,7 +1,10 @@
 {
     "appKeys": {
         "showWeather": 0,
-        "useCelsius": 1
+        "useCelsius": 1,
+        "KEY_TEMPERATURE": 2,
+        "KEY_TEMPERATURE_IN_C": 3,
+        "KEY_CONDITIONS": 4
         },
     "capabilities": [
         "location",

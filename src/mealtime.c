@@ -2,6 +2,9 @@
 
 #define KEY_SHOW_WEATHER 0
 #define KEY_USE_CELSIUS 1
+#define KEY_TEMPERATURE 2
+#define KEY_TEMPERATURE_IN_C 3
+#define KEY_CONDITIONS 4
 
 static Window *s_main_window;
 static TextLayer *s_time_layer, *s_ampm_layer, *s_date_layer, *s_temp_layer, *s_conditions_layer;
@@ -32,6 +35,15 @@ void animate_layer(Layer *layer, GRect *start, GRect *finish, int duration, int 
  
     //Start animation!
     animation_schedule((Animation*) anim);
+}
+
+static void update_layers() {
+	if (show_weather == 0) {
+		layer_set_hidden(weather_layer, true);
+	} else {
+		layer_set_hidden(weather_layer, false);
+	}
+	layer_mark_dirty(weather_layer);
 }
 
 static void animate_layers() {
@@ -173,12 +185,15 @@ static void update_time() {
 }
 
 static void inbox_received_handler(DictionaryIterator *iter, void *context) {
-	static char temp_buffer[15];
-	static char temp_c_buffer[15];
+	static char temp_buffer[25];
+	static char temp_c_buffer[25];
 	static char conditions_buffer[200];
 
 	Tuple *show_weather_t = dict_find(iter, KEY_SHOW_WEATHER);
 	Tuple *use_celsius_t = dict_find(iter, KEY_USE_CELSIUS);
+	Tuple *temperature_t = dict_find(iter, KEY_TEMPERATURE);
+	Tuple *temperature_c_t = dict_find(iter, KEY_TEMPERATURE_IN_C);
+	Tuple *conditions_t = dict_find(iter, KEY_CONDITIONS);
 
 	if (show_weather_t) {
 		APP_LOG(APP_LOG_LEVEL_INFO, "KEY_SHOW_WEATHER received!");
@@ -194,17 +209,32 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 		persist_write_int(KEY_USE_CELSIUS, use_celsius);
 	}
 
-	if (show_weather == 0) {
-		// hide layers
-	} else {
-		// show layers
+	if (temperature_t) {
+		APP_LOG(APP_LOG_LEVEL_INFO, "KEY_TEMPERATURE received!");
+
+  		snprintf(temp_buffer, sizeof(temp_buffer), "Feels like %d", (int)temperature_t->value->int32);
 	}
 
-	if (use_celsius == 1) {
-		// use temp_c_buffer
-	} else {
-		// use temp_buffer
+	if (temperature_c_t) {
+		APP_LOG(APP_LOG_LEVEL_INFO, "KEY_TEMPERATURE_IN_C received!");
+
+  		snprintf(temp_buffer, sizeof(temp_c_buffer), "Feels like %d", (int)temperature_t->value->int32);
 	}
+
+	if (conditions_t) {
+  		APP_LOG(APP_LOG_LEVEL_INFO, "KEY_CONDITIONS received!");
+
+  		snprintf(conditions_buffer, sizeof(conditions_buffer), "%s", conditions_t->value->cstring);
+  		text_layer_set_text(s_conditions_layer, conditions_buffer);
+  	}
+
+	if (use_celsius == 1) {
+		text_layer_set_text(s_temp_layer, temp_c_buffer);
+	} else {
+		text_layer_set_text(s_temp_layer, temp_buffer);
+	}
+
+	update_layers();
 }
 
 static void main_window_load(Window *window) {
@@ -255,6 +285,7 @@ static void main_window_load(Window *window) {
 		use_celsius = persist_read_int(KEY_USE_CELSIUS);
 	}
 
+	update_layers();
 	update_time();
 }
 
@@ -271,7 +302,11 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 }
 
 static void tap_handler(AccelAxisType axis, int32_t direction) {
-	animate_layers();
+	if (show_weather == 0) {
+		// do not animate
+	} else {
+		animate_layers();
+	}
 }
 
 
