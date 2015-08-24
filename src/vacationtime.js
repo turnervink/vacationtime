@@ -80,7 +80,7 @@ Pebble.addEventListener('appmessage',
 );
 
 Pebble.addEventListener('showConfiguration', function() {
-  var url = 'http://5a86c5ba.ngrok.com';
+  var url = 'http://turnervink.github.io/vacationtime/';
 
   console.log('Showing configuration page: ' + url);
 
