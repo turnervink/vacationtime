@@ -43,6 +43,7 @@ static void update_layers() {
 	} else {
 		layer_set_hidden(weather_layer, false);
 	}
+
 	layer_mark_dirty(weather_layer);
 }
 
@@ -218,7 +219,7 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
 	if (temperature_c_t) {
 		APP_LOG(APP_LOG_LEVEL_INFO, "KEY_TEMPERATURE_IN_C received!");
 
-  		snprintf(temp_buffer, sizeof(temp_c_buffer), "Feels like %d", (int)temperature_t->value->int32);
+  		snprintf(temp_c_buffer, sizeof(temp_c_buffer), "Feels like %d", (int)temperature_c_t->value->int32);
 	}
 
 	if (conditions_t) {
@@ -228,11 +229,11 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
   		text_layer_set_text(s_conditions_layer, conditions_buffer);
   	}
 
-	if (use_celsius == 1) {
-		text_layer_set_text(s_temp_layer, temp_c_buffer);
-	} else {
-		text_layer_set_text(s_temp_layer, temp_buffer);
-	}
+  	if (use_celsius == 1) {
+  		text_layer_set_text(s_temp_layer, temp_c_buffer);
+  	} else {
+  		text_layer_set_text(s_temp_layer, temp_buffer);
+  	}
 
 	update_layers();
 }
@@ -262,13 +263,11 @@ static void main_window_load(Window *window) {
 	text_layer_set_background_color(s_temp_layer, GColorClear);
 	text_layer_set_font(s_temp_layer, s_weather_font);
 	text_layer_set_text_alignment(s_temp_layer, GTextAlignmentRight);
-	text_layer_set_text(s_temp_layer, "Updating");
 
 	s_conditions_layer = text_layer_create(GRect(0, 15, 141, 168));
 	text_layer_set_background_color(s_conditions_layer, GColorClear);
 	text_layer_set_font(s_conditions_layer, s_weather_font);
 	text_layer_set_text_alignment(s_conditions_layer, GTextAlignmentRight);
-	text_layer_set_text(s_conditions_layer, "Weather");
 
 	layer_add_child(window_get_root_layer(window), weather_layer);
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_ampm_layer));
