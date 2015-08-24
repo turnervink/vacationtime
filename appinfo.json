@@ -29,11 +29,6 @@
                 "file": "fonts/cynthe.ttf",
                 "name": "FONT_CYNTHE_22",
                 "type": "font"
-            },
-            {
-                "file": "fonts/cynthe.ttf",
-                "name": "FONT_CYNTHE_18",
-                "type": "font"
             }
         ]
     },
