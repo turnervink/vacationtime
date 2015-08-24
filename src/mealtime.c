@@ -8,7 +8,7 @@
 
 static Window *s_main_window;
 static TextLayer *s_time_layer, *s_ampm_layer, *s_date_layer, *s_temp_layer, *s_conditions_layer;
-static Layer *weather_layer;
+static Layer *weather_layer, *batt_layer;
 static GFont s_time_font, s_date_font, s_weather_font;
 static bool show_weather = 1;
 static bool use_celsius = 0;
@@ -61,6 +61,70 @@ static void set_text_colors(GColor color) {
 	text_layer_set_text_color(s_date_layer, color);
 	text_layer_set_text_color(s_temp_layer, color);
 	text_layer_set_text_color(s_conditions_layer, color);
+}
+
+static void batt_layer_draw(Layer *layer, GContext *ctx) {
+	time_t temp = time(NULL);
+	struct tm *tick_time = localtime(&temp);
+	int hour = tick_time->tm_hour;
+
+	if(hour >= 21) {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorBlack));
+		#else
+			graphics_context_set_fill_color(ctx, GColorWhite);
+		#endif
+	} else if(hour >= 18) {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorOxfordBlue));
+		#else
+			graphics_context_set_fill_color(ctx, GColorWhite);
+		#endif
+	} else if(hour >= 15) {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorSunsetOrange));
+		#else
+			graphics_context_set_fill_color(ctx, GColorBlack);
+		#endif
+	} else if(hour >= 12) {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorVividCerulean));
+		#else
+			graphics_context_set_fill_color(ctx, GColorBlack);
+		#endif
+	} else if(hour >= 9) {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorVividCerulean));
+		#else
+			graphics_context_set_fill_color(ctx, GColorBlack);
+		#endif
+	} else if(hour >= 6) {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorVividCerulean));
+		#else
+			graphics_context_set_fill_color(ctx, GColorBlack);
+		#endif
+	} else if(hour >= 3) {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorVeryLightBlue));	
+		#else
+			graphics_context_set_fill_color(ctx, GColorWhite);
+		#endif
+	} else if(hour >= 0) {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorBlack));
+		#else
+			graphics_context_set_fill_color(ctx, GColorWhite);
+		#endif
+	} else {
+		#ifdef PBL_COLOR
+			graphics_context_set_fill_color(ctx, gcolor_legible_over(GColorRed));
+		#else
+			graphics_context_set_fill_color(ctx, GColorBlack);
+		#endif
+	}
+
+	graphics_fill_rect(ctx, GRect(0, 0, 4, 168), 0, GCornerNone);
 }
 
 static void update_time() {
@@ -269,10 +333,14 @@ static void main_window_load(Window *window) {
 	text_layer_set_font(s_conditions_layer, s_weather_font);
 	text_layer_set_text_alignment(s_conditions_layer, GTextAlignmentRight);
 
+	batt_layer = layer_create(GRect(-5, 0, 144, 168));
+	layer_set_update_proc(batt_layer, batt_layer_draw);
+
 	layer_add_child(window_get_root_layer(window), weather_layer);
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_ampm_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_date_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
+	layer_add_child(window_get_root_layer(window), batt_layer);
 	layer_add_child(weather_layer, text_layer_get_layer(s_temp_layer));
 	layer_add_child(weather_layer, text_layer_get_layer(s_conditions_layer));
 
@@ -302,10 +370,15 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 
 static void tap_handler(AccelAxisType axis, int32_t direction) {
 	if (show_weather == 0) {
-		// do not animate
+		// do not animate weather_layer
 	} else {
 		animate_layers();
 	}
+
+	GRect startbatt = GRect(-5,0,144,168);
+	GRect finishbatt = GRect(0,0,144,168);
+	animate_layer(batt_layer, &startbatt, &finishbatt, 1000, 0);
+	animate_layer(batt_layer, &finishbatt, &startbatt, 1000, 5000);
 }
 
 
