@@ -58,16 +58,19 @@ static void animate_layers() {
 }
 
 static void init_animation() {
-	GRect start = GRect(0, 175, 144, 168);
+	GRect firststart = GRect(0, 175, 142, 168);
+	GRect secondstart = GRect(0, 175, 141, 168);
+	GRect thirdstart = GRect(0, 175, 142, 168);
+
 	GRect first = GRect(0, 132, 142, 168);
 	GRect second = GRect(0, 115, 141, 168);
 	GRect third = GRect(0, 96, 142, 168);
 
 	int animlen = 700;
 
-	animate_layer(text_layer_get_layer(s_ampm_layer), &start, &third, animlen, 0);
-	animate_layer(text_layer_get_layer(s_date_layer), &start, &second, animlen, 0);
-	animate_layer(text_layer_get_layer(s_time_layer), &start, &first, animlen, 0);
+	animate_layer(text_layer_get_layer(s_ampm_layer), &thirdstart, &third, animlen, 0);
+	animate_layer(text_layer_get_layer(s_date_layer), &secondstart, &second, animlen, 0);
+	animate_layer(text_layer_get_layer(s_time_layer), &firststart, &first, animlen, 0);
 }
 
 static void set_text_colors(GColor color) {
