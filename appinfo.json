@@ -29,6 +29,26 @@
                 "file": "fonts/cynthe.ttf",
                 "name": "FONT_CYNTHE_22",
                 "type": "font"
+            },
+            {
+                "type": "raw",
+                "name": "LOCALE_ENGLISH",
+                "file": "locale_english.bin"
+            }, 
+            {
+                "type": "raw",
+                "name": "LOCALE_FRENCH",
+                "file": "locale_french.bin"
+            }, 
+            {
+                "type": "raw",
+                "name": "LOCALE_SPANISH",
+                "file": "locale_spanish.bin"
+            }, 
+            {
+                "type": "raw",
+                "name": "LOCALE_GERMAN",
+                "file": "locale_german.bin"
             }
         ]
     },
@@ -39,7 +59,7 @@
         "basalt"
     ],
     "uuid": "cd8dcffe-df20-4306-99e8-ddd817d0bf67",
-    "versionLabel": "2.2",
+    "versionLabel": "3.0",
     "watchapp": {
         "watchface": true
     }

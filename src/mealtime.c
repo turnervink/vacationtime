@@ -1,4 +1,5 @@
 #include <pebble.h>
+#include <localize.h>
 
 #define KEY_SHOW_WEATHER 0
 #define KEY_USE_CELSIUS 1
@@ -156,7 +157,7 @@ static void update_time() {
 
 	if(hour >= 21) {
 		text_layer_set_text(s_ampm_layer, " ");
-		text_layer_set_text(s_time_layer, "night");
+		text_layer_set_text(s_time_layer, _("night"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorBlack);
 			set_text_colors(gcolor_legible_over(GColorBlack));
@@ -166,7 +167,7 @@ static void update_time() {
 		#endif
 	} else if(hour >= 18) {
 		text_layer_set_text(s_ampm_layer, " ");
-		text_layer_set_text(s_time_layer, "evening");
+		text_layer_set_text(s_time_layer, _("evening"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorOxfordBlue);
 			set_text_colors(gcolor_legible_over(GColorOxfordBlue));
@@ -175,8 +176,8 @@ static void update_time() {
 			set_text_colors(GColorWhite);
 		#endif
 	} else if(hour >= 15) {
-		text_layer_set_text(s_ampm_layer, "late");
-		text_layer_set_text(s_time_layer, "afternoon");
+		text_layer_set_text(s_ampm_layer, _("late"));
+		text_layer_set_text(s_time_layer, _("afternoon"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorSunsetOrange);
 			set_text_colors(gcolor_legible_over(GColorSunsetOrange));
@@ -186,7 +187,7 @@ static void update_time() {
 		#endif
 	} else if(hour >= 12) {
 		text_layer_set_text(s_ampm_layer, " ");
-		text_layer_set_text(s_time_layer, "afternoon");
+		text_layer_set_text(s_time_layer, _("afternoon"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorVividCerulean);
 			set_text_colors(gcolor_legible_over(GColorVividCerulean));
@@ -195,8 +196,8 @@ static void update_time() {
 			set_text_colors(GColorBlack);
 		#endif
 	} else if(hour >= 9) {
-		text_layer_set_text(s_ampm_layer, "late");
-		text_layer_set_text(s_time_layer, "morning");
+		text_layer_set_text(s_ampm_layer, _("late"));
+		text_layer_set_text(s_time_layer, _("morning"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorVividCerulean);
 			set_text_colors(gcolor_legible_over(GColorVividCerulean));
@@ -206,7 +207,7 @@ static void update_time() {
 		#endif
 	} else if(hour >= 6) {
 		text_layer_set_text(s_ampm_layer, " ");
-		text_layer_set_text(s_time_layer, "morning");
+		text_layer_set_text(s_time_layer, _("morning"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorVividCerulean);
 			set_text_colors(gcolor_legible_over(GColorVividCerulean));
@@ -215,8 +216,8 @@ static void update_time() {
 			set_text_colors(GColorBlack);
 		#endif
 	} else if(hour >= 3) {
-		text_layer_set_text(s_ampm_layer, "early");
-		text_layer_set_text(s_time_layer, "morning");
+		text_layer_set_text(s_ampm_layer, _("early"));
+		text_layer_set_text(s_time_layer, _("morning"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorVeryLightBlue);
 			set_text_colors(gcolor_legible_over(GColorVeryLightBlue));	
@@ -226,7 +227,7 @@ static void update_time() {
 		#endif
 	} else if(hour >= 0) {
 		text_layer_set_text(s_ampm_layer, " ");
-		text_layer_set_text(s_time_layer, "midnight");
+		text_layer_set_text(s_time_layer, _("midnight"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorBlack);
 			set_text_colors(gcolor_legible_over(GColorBlack));
@@ -235,8 +236,8 @@ static void update_time() {
 			set_text_colors(GColorWhite);
 		#endif
 	} else {
-		text_layer_set_text(s_ampm_layer, "error");
-		text_layer_set_text(s_time_layer, "error");
+		text_layer_set_text(s_ampm_layer, _("error"));
+		text_layer_set_text(s_time_layer, _("error"));
 		#ifdef PBL_COLOR
 			window_set_background_color(s_main_window, GColorRed);
 			set_text_colors(gcolor_legible_over(GColorRed));
@@ -249,26 +250,26 @@ static void update_time() {
 	static char date_buffer[] = "WWWWWWWWW";
 
 	strftime(date_buffer, sizeof("WWWWWWWWW"), "%A", tick_time);
-	text_layer_set_text(s_date_layer, date_buffer);
+	// text_layer_set_text(s_date_layer, date_buffer);
 
-	/* For localization
+	// For localization
 	if (strcmp(date_buffer, "Monday") == 0) {
-		text_layer_set_text(s_date_layer, "Monday");
+		text_layer_set_text(s_date_layer, _("Monday"));
 	} else if(strcmp(date_buffer, "Tuesday") == 0) {
-		text_layer_set_text(s_date_layer, "Tuesday");
+		text_layer_set_text(s_date_layer, _("Tuesday"));
 	} else if(strcmp(date_buffer, "Wednesday") == 0) {
-		text_layer_set_text(s_date_layer, "Wednesday");
+		text_layer_set_text(s_date_layer, _("Wednesday"));
 	} else if(strcmp(date_buffer, "Thursday") == 0) {
-		text_layer_set_text(s_date_layer, "Thursday");
+		text_layer_set_text(s_date_layer, _("Thursday"));
 	} else if(strcmp(date_buffer, "Friday") == 0) {
-		text_layer_set_text(s_date_layer, "Friday"));
+		text_layer_set_text(s_date_layer, _("Friday"));
 	} else if(strcmp(date_buffer, "Saturday") == 0) {
-		text_layer_set_text(s_date_layer, "Saturday");
+		text_layer_set_text(s_date_layer, _("Saturday"));
 	} else if(strcmp(date_buffer, "Sunday") == 0) {
-		text_layer_set_text(s_date_layer, "Sunday");
+		text_layer_set_text(s_date_layer, _("Sunday"));
 	} else {
 		text_layer_set_text(s_date_layer, date_buffer);
-	}*/
+	}
 }
 
 static void inbox_received_handler(DictionaryIterator *iter, void *context) {
@@ -450,6 +451,7 @@ static void deinit() {
 
 int main(void) {
 	init();
+	locale_init();
 	app_event_loop();
 	deinit();
 }
