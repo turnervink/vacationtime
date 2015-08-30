@@ -2,8 +2,8 @@
 by Turner Vink<br>
 www.turnervink.com
 
-![screenshot](screenshots/times.gif)
-![screenshot](screenshots/aplite.gif)<br>
+![screenshot](screenshots/times.gif "Basalt")
+![screenshot](screenshots/aplite.gif "Aplite")<br>
 
 * See progress through the day in 8 stages
 * Supports English, French, Spanish, and German
