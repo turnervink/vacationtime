@@ -49,6 +49,12 @@
                 "type": "raw",
                 "name": "LOCALE_GERMAN",
                 "file": "locale_german.bin"
+            },
+            {
+                "menuIcon": true,
+                "type": "png",
+                "name": "IMAGE_ICON",
+                "file": "vt_icon.png"
             }
         ]
     },
@@ -59,7 +65,7 @@
         "basalt"
     ],
     "uuid": "cd8dcffe-df20-4306-99e8-ddd817d0bf67",
-    "versionLabel": "3.0",
+    "versionLabel": "3.1",
     "watchapp": {
         "watchface": true
     }

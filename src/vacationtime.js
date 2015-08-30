@@ -9,7 +9,7 @@ var xhrRequest = function (url, type, callback) {
 
 function locationSuccess(pos) {
   // Construct URL
-  var url = 'https://api.forecast.io/forecast/6a987aa0f3fdb98e6582163f2c9c324f/' + 
+  var url = 'https://api.forecast.io/forecast/APIKEY/' + 
   pos.coords.latitude + ',' + pos.coords.longitude;
   
   console.log("Lat is " + pos.coords.latitude);
@@ -80,7 +80,7 @@ Pebble.addEventListener('appmessage',
 );
 
 Pebble.addEventListener('showConfiguration', function() {
-  var url = 'http://turnervink.github.io/vacationtime/';
+  var url = 'http://turnervink.github.io/vacationtime-config/';
 
   console.log('Showing configuration page: ' + url);
 
